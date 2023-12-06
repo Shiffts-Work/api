@@ -1,3 +1,12 @@
+model ApiKey {
+    id        String   @id @default(auto()) @map("_id") @db.ObjectId
+    key       String
+    adminId   String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("apiKeys")
+}
 generator client {
   provider = "prisma-client-js"
 }

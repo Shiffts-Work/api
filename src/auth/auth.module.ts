@@ -10,6 +10,7 @@ import { RefreshTokenStrategy } from './strategies/refreshToken.strategy';
 import { GoogleStrategy } from './strategies/google.strategy';
 import { MicrosoftStratergy } from './strategies/microsoft.stratergy';
 import { UserService } from 'src/user/user.service';
+import { HeaderApiKeyStrategy } from './strategies/auth-header-api-key.strategy';
 
 @Module({
   imports: [JwtModule.register({})],
@@ -23,6 +24,7 @@ import { UserService } from 'src/user/user.service';
     AccessTokenStrategy,
     GoogleStrategy,
     MicrosoftStratergy,
+    HeaderApiKeyStrategy,
   ],
 })
 export class AuthModule {}
