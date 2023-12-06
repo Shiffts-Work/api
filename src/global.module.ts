@@ -1,7 +1,7 @@
 import { Global, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-// import { MongoPrismaService } from './prisma/mongo-prisma.service';
 import { CacheModule } from '@nestjs/cache-manager';
+import { MongoPrismaService } from './prisma/mongo-prisma.service';
 
 @Global()
 @Module({
@@ -14,7 +14,7 @@ import { CacheModule } from '@nestjs/cache-manager';
       isGlobal: true,
     }),
   ],
-  // providers: [MongoPrismaService],
-  // exports: [MongoPrismaService],
+  providers: [MongoPrismaService],
+  exports: [MongoPrismaService],
 })
 export class GlobalModule {}

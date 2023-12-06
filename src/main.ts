@@ -6,7 +6,7 @@ import { useContainer } from 'class-validator';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { rawBody: true });
   const configService = app.get(ConfigService);
 
   const baseUrl =
@@ -38,12 +38,14 @@ async function bootstrap() {
 
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
+  app.enableShutdownHooks();
+
   const config = new DocumentBuilder()
     .addApiKey({ type: 'apiKey', name: 'X-API-KEY', in: 'header' }, 'X-API-KEY')
     .addBearerAuth()
-    .setTitle('Legitify API')
+    .setTitle('Shiffts API')
     .setDescription(
-      'You can find documentation for all endpoints on Legitify website.',
+      'You can find documentation for all endpoints on Shiffts website.',
     )
     .setVersion('0.0.1')
     .build();

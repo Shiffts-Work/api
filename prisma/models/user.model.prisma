@@ -1,0 +1,39 @@
+enum UserType {
+  EMPLOYEE
+  EMPLOYER
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  PENDING
+}
+
+enum SocialProvider {
+  GOOGLE
+  MICROSOFT
+}
+
+model User {
+  id                           String            @id @default(auto()) @map("_id") @db.ObjectId
+  email                        String            @unique
+  firstName                    String
+  lastName                     String
+  password                     String
+  address                      String?
+  socialProvider               SocialProvider?
+  socialId                     String?
+  userType                     UserType
+  status                       UserStatus        @default(PENDING)
+  isEmailVerified              Boolean           @default(false)
+  companyName                  String?           @default("")
+  isTeamAdmin                  Boolean?          @default(false)
+  isTeam                       Boolean?          @default(false)
+  adminId                      String?
+  deletedAt                    DateTime?
+  createdAt                    DateTime          @default(now())
+  updatedAt                    DateTime          @updatedAt
+
+  @@map("user")
+}
